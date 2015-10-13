@@ -1,0 +1,22 @@
+{
+    "name": "royal/yii2-helpers",
+    "description": "Most Common Helpers for php like ZIP Directory, GeoIP, Fa2En numbers, Copy Directory, Remove Directory funcs",
+    "type": "library",
+    "keywords": ["yii2","library","zip","geoip","fa2en","copy directory","remove directory"],
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Hassan Nasiri",
+            "email": "hassan.nasiri@live.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "royal/yii2-backup": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Royal\\Library\\": ""
+        }
+    }
+}
