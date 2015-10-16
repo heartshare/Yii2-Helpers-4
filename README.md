@@ -28,8 +28,14 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-use \Royal\Library\Helpers;
+use \Royal\Library;
 ```
 
 Available static methods
 ----
+```php
+// Copy direcotry recursivly.
+\Library\Common::copyDirectory('/var/www/html/', 'var/www/backup', 0755);
+// Get ip location [region, city].
+\Library\GeoLocation::byIp('192.168.1.1');
+```
