@@ -2,6 +2,7 @@
 
 namespace Royal\Library;
 use Yii;
+use yii\helpers\Json;
 
 class GeoLocation
 {
@@ -15,7 +16,7 @@ class GeoLocation
 
         if (!empty($location) AND is_string($location))
         {
-            $location = CJSON::decode($location);
+            $location = Json::decode($location);
 
             if (isset($location['status']) AND $location['status'] == 'success')
             {
@@ -42,7 +43,7 @@ class GeoLocation
 
             if (!empty($response))
             {
-                $response = @CJSON::decode($response);
+                $response = Json::decode($response);
 
                 if (isset($response['results'][0]['formatted_address']))
                 {
