@@ -1,81 +1,14 @@
 <?php
 
 namespace Royal\Library;
-use Yii;
 
 class Helpers
 {
-
     public static function fa2en($number)
     {
         $persian = array('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹');
         $num = range(0, 9);
         return str_replace($persian, $num, $number);
-    }
-
-    public static function getLocation($ip = null)
-    {
-        if ($ip === null)
-        {
-            $ip = Yii::app()->request->getUserHostAddress();
-        }
-        $location = @file_get_contents('http://ip-api.com/json/' . $ip);
-
-        if (!empty($location) AND is_string($location))
-        {
-            $location = CJSON::decode($location);
-
-            if (isset($location['status']) AND $location['status'] == 'success')
-            {
-                return ['region' => $location['regionName'], 'city' => $location['city']];
-            }
-        }
-
-        return NULL;
-    }
-    
-    public static function getLocationName($latitude, $longitude = '')
-    {
-        if (is_array($latitude) AND count($latitude) > 1)
-        {
-            $longitude = $latitude[1];
-            $latitude = $latitude[0];
-        }
-
-        if (!empty($latitude) AND ! empty($longitude))
-        {
-            $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . trim($latitude) . ',' . trim($longitude) . '&sensor=true';
-
-            $response = @file_get_contents($url);
-
-            if (!empty($response))
-            {
-                $response = @CJSON::decode($response);
-
-                if (isset($response['results'][0]['formatted_address']))
-                {
-                    return $response['results'][0]['formatted_address'];
-                }
-            }
-        }
-
-        return 'GeoLocation Not Found';
-    }
-
-    public static function getMapUrl($latitude, $longitude = '')
-    {
-        if (is_array($latitude) AND count($latitude) > 1)
-        {
-            $longitude = $latitude[1];
-            $latitude = $latitude[0];
-        }
-
-        if (!empty($latitude) AND ! empty($longitude))
-        {
-            return 'https://www.google.com/maps/@' . trim($latitude) . ',' . trim($longitude) . ',13z';
-        }
-
-        return '';
     }
 
     public static function zip($sourcePath, $outZipPath, $isDirectory = true)
